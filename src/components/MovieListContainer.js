@@ -34,8 +34,8 @@ export default class MovieListContainer extends React.Component {
         return (
             <div className='Movie-list-container'>
                 {
-                    movies.map(item => {
-                        return  <MovieBox movieItem={item}/>
+                    movies.map((item,i) => {
+                        return  <MovieBox key={i} movieItem={item}/>
                     })
                 }
             </div>
