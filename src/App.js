@@ -1,23 +1,25 @@
-import React, {Component} from 'react';
-import {Route, Switch} from "react-router-dom";
-import {Routes} from './Routes';
-import Header from "./components/Header";
+import React from 'react';
+import './App.css';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { Route, Router, Switch } from 'react-router';
+import { createBrowserHistory } from 'history';
+import HomePage from "./pages/HomePage/HomePage";
+import MovieDetailPage from "./pages/MovieDetailPage/MovieDetailPage";
 
-const routeComponents = Routes.map((route) => {
-    return <Route path={route.path} component={route.component} key={'route' + route.path}/>;
-});
+const history = createBrowserHistory();
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <Header/>
+function App() {
+    return (
+        <Provider store={store}>
+            <Router history={history}>
                 <Switch>
-                    {routeComponents}
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/detail/:id" component={MovieDetailPage} />
                 </Switch>
-            </div>
-        );
-    }
+            </Router>
+        </Provider>
+    );
 }
 
 export default App;

@@ -1,5 +1,5 @@
-import HomePage from "./pages/HomePage";
-import MovieDetailPage from "./pages/MovieDetailPage";
+import HomePage from "./pages/HomePage/HomePage";
+import MovieDetailPage from "./pages/MovieDetailPage/MovieDetailPage";
 
 export const Routes = [
     {

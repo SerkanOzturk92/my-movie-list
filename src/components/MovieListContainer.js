@@ -3,30 +3,70 @@ import MovieBox from "./MovieBox";
 
 const movies =[
     {
-        id: 1,
-        imgUrl: '',
-        name: 'bbb'
+        imdbID: 1,
+        Type: '',
+        Poster: '',
+        Title: 'efwe',
+        Year: '1999'
+    },
+    {
+        imdbID: 2,
+        Type: '',
+        Poster: '',
+        Title: 'wew',
+        Year: '1999'
+    },
+    {
+        imdbID: 3,
+        Type: '',
+        Poster: '',
+        Title: 'b2342bb',
+        Year: '1999'
+    },
+    {
+        imdbID: 4,
+        Type: '',
+        Poster: '',
+        Title: 'wdfhr',
+        Year: '1999'
     },{
-        id: 1,
-        imgUrl: '4r34r3.png',
-        name: 'qweq'
+        imdbID: 5,
+        Type: '',
+        Poster: '',
+        Title: 'wewf',
+        Year: '1999'
     },{
-        id: 1,
-        imgUrl: '',
-        name: 'asda'
+        imdbID: 6,
+        Type: '',
+        Poster: '',
+        Title: 'sdfsd',
+        Year: '1999'
     },{
-        id: 1,
-        imgUrl: '',
-        name: 'asfas'
+        imdbID: 7,
+        Type: '',
+        Poster: '',
+        Title: 'fdgdf',
+        Year: '1999'
     },{
-        id: 1,
-        imgUrl: '',
-        name: 'asa'
+        imdbID: 8,
+        Type: '',
+        Poster: '',
+        Title: 'wewe',
+        Year: '1999'
     },{
-        id: 1,
-        imgUrl: '',
-        name: 'bxzzbb'
-    }];
+        imdbID: 9,
+        Type: '',
+        Poster: '',
+        Title: 'cxvxcv',
+        Year: '1999'
+    },{
+        imdbID: 10,
+        Type: '',
+        Poster: '',
+        Title: 'hgjh',
+        Year: '1999'
+    }
+];
 
 
 export default class MovieListContainer extends React.Component {

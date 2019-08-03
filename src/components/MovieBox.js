@@ -10,30 +10,19 @@ export default class MovieBox extends React.Component {
         movieItem: undefined
     };
 
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            movie: undefined,
-        };
-
-        //this.sort = this.sort.bind(this);
-    }
-
     componentWillMount() {
 
     }
-
 
     render() {
         const {movieItem} = this.props;
         return (
             <div className='Movie-box'>
                 <div className='m-img'>
-                    <img src={movieItem.imgUrl} alt="img not found"/>
+                    <img src={movieItem.Poster} alt="img not found"/>
                 </div>
                 <div className='m-title'>
-                    <p> {movieItem.name}</p>
+                    <p> {movieItem.Title}</p>
                 </div>
             </div>
         );

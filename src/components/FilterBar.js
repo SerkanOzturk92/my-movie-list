@@ -5,8 +5,9 @@ export default class FilterBar extends React.Component {
         return (
             <div className='FilterBar'>
                     <select className='f-item'>
-                        <option placeholder="">Categories</option>
-                        <option>New Arrivals</option>
+                        <option placeholder="">Movies</option>
+                        <option>Series</option>
+                        <option>Episode</option>
                     </select>
             </div>
         );

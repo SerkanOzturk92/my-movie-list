@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import MovieImg from "../components/MovieImg";
-import MovieDescription from "../components/MovieDescription";
-import './../style.scss';
+import MovieImg from "../../components/MovieImg";
+import MovieDescription from "../../components/MovieDescription";
+import '../../style.scss';
 
 class MovieDetailPage extends Component {
 

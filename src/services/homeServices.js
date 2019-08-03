@@ -1,14 +1,7 @@
-export const searchMyMovies = (keyword) => {
-    fetch( `http://www.omdbapi.com/?apikey=b7a8da6&s=${keyword}&plot=full`)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                return result;
-            }
-        )
+import {API_KEY} from "../utils/constant";
+
+export const  searchMyMovies = async (keyword,page) => {
+    const input = page ? `http://www.omdbapi.com/?apikey=${API_KEY}&s=${keyword}&plot=full&page=${page}`
+        : `http://www.omdbapi.com/?apikey=${API_KEY}&s=${keyword}&plot=full`;
+        return await fetch( input);
 };
-
-// Search Req
-
-// GetPosterReq
-

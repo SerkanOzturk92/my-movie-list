@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import HomePage from "./pages/HomePage";
-import MovieDetailPage from "./pages/MovieDetailPage";
+import HomePage from "./pages/HomePage/HomePage";
+import MovieDetailPage from "./pages/MovieDetailPage/MovieDetailPage";
 
 it('renders without crashing App', () => {
   const div = document.createElement('div');
