@@ -1,0 +1,100 @@
+.Home-page {
+    height: -webkit-fill-available;
+    text-align: center;
+}
+
+.Header {
+    background-color: #44000d;
+    height: 5rem;
+    color: #f9f5ad;
+    text-align: center;
+}
+.Header p {
+    text-align: center;
+    line-height: 4rem;
+    margin: 0;
+    font-size: 3rem;
+}
+
+
+.Filter {
+    display: block;
+    margin: 2% 20% 2% 20%;
+    align-items: flex-start;
+    height: 3rem;
+    border-radius: 20px;
+}
+.FilterBar {
+    display: inline-block;
+    width: 30%;
+    float:left;
+}
+
+.Search {
+    display: inline-block;
+    width: 70%;
+}
+
+.Search-input {
+    display: inline-block;
+    width: 80%;
+}
+
+.Search-button {
+    display: inline-block;
+    width: 20%;
+    float: right;
+}
+
+.f-item {
+    padding: 0;
+    width: 100%;
+    height: 45px;
+    border: 0 solid gray;
+    box-shadow: inset 0 0 0 1px gray;
+}
+
+
+.Movie-list-container {
+    border: 1px solid black;
+}
+
+@media only screen and (max-width: 768px){
+    .Movie-list-container {
+    }
+}
+
+
+
+.Movie-box {
+    border: 1px solid red;
+    margin: 5px;
+    padding: 2px;
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    max-width: 600px;
+    min-width: 245px;
+    height: 20rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .Movie-box {
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+img {
+    width: 2rem;
+}

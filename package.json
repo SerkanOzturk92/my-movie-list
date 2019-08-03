@@ -12,8 +12,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
-    "sass": "^1.22.9",
-    "yarn": "^1.17.3"
+    "yarn": "^1.17.3",
+    "prop-types": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
