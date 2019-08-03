@@ -1,24 +1,38 @@
 import React from 'react';
-import FilterBar from "./FilterBar";
-import Search from "./Search";
-
 
 export default class Filter extends React.Component {
     constructor(props){
         super(props);
-
-        this.filterMovies = this.filterMovies.bind(this);
+        this.state = {value: ''};
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    filterMovies (e){
-        this.props.filterMovies(e);
+    handleChange(event) {
+        this.setState({value: event.target.value});
+        this.props.filterMovies(event.target.value);
     }
 
     render () {
         return (
             <div className='Filter'>
-                <FilterBar/>
-                <Search searchMoviesByKey ={this.filterMovies}/>
+                <div className='FilterBar'>
+                    <select className='f-item'>
+                        <option placeholder="">Movies</option>
+                        <option>Series</option>
+                        <option>Episode</option>
+                    </select>
+                </div>
+                <div className='Search'>
+                    <div className="Search-input">
+                        <input className='f-item' id="search" type="text" placeholder="Enter Keywords?"
+                               value={this.state.value} onChange={this.handleChange}/>
+                    </div>
+                    <div className="Search-button">
+                        <button  className="Btn-search f-item" type="button">
+                            Search
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }

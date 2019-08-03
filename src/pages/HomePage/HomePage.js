@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import Filter from "../../components/Filter";
 import MovieListContainer from "../../components/MovieListContainer";
-import {bindActionCreators} from "redux";
+import { bindActionCreators } from 'redux';
 import {connect} from "react-redux";
 import {fetchMovies} from "./redux/action";
 
 class HomePage extends Component {
+
+    constructor(props){
+        super(props);
+
+        this.searchMovies = this.searchMovies.bind(this);
+    }
+
     state = {
         error:false,
         hasMore: true,
