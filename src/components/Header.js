@@ -1,5 +1,5 @@
 import React from 'react';
-import './../stylescss';
+import './../style.scss';
 
 export default class Header extends React.Component {
     render() {

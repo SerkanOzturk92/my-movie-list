@@ -3,7 +3,7 @@ import Filter from "../../components/Filter";
 import MovieListContainer from "../../components/MovieListContainer";
 import { bindActionCreators } from 'redux';
 import {connect} from "react-redux";
-import {fetchMovies} from "./redux/action";
+import {fetchSearchMovies} from "./redux/action";
 
 class HomePage extends Component {
 
@@ -39,24 +39,20 @@ class HomePage extends Component {
     searchMovies(keyword) {
         //TODO: kullanıcı 3 harften sonra 300ms beklerse arama yapılacak.
         // eğer 300ms geçmeden yeni harf tıklanırsa arama beklemeli.
-        if(keyword.length > 3)
+        if(keyword.length > 2)
         {
-            debugger;
-            this.props.fetchMovies(keyword);
+            this.props.fetchSearchMovies(keyword);
         }
     }
 
     handleMoviesData(moviesResp) {
         if(!moviesResp) return;
-        const moviesData = moviesResp.map(movie => {
-            return movie
-        });
-    const total = 100; // TODO : sorgudan gelen totaldan alınacak.
+
+        const total = +moviesResp.totalResults;
         const movies = [
             ...this.state.movies,
-            ...moviesData
+            ...moviesResp.Search,
         ];
-
         this.setState({
             movies: movies,
             isLoading: false,
@@ -74,7 +70,7 @@ class HomePage extends Component {
         return (
             <div className='Home-page'>
                 <Filter filterMovies = {this.searchMovies} />
-                <MovieListContainer/>
+                <MovieListContainer movies={this.state.movies}/>
             </div>
         );
     }
@@ -90,7 +86,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        fetchMovies
+        fetchSearchMovies
     }, dispatch);
 };
 

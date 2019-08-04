@@ -1,7 +1,17 @@
 import React from 'react';
 import * as propTypes from 'prop-types';
+import {Redirect} from "react-router";
 
 export default class MovieBox extends React.Component {
+    state = {
+        redirect: false,
+        url:''
+    };
+    constructor(props){
+        super(props);
+        this.goDetail = this.goDetail.bind(this);
+    }
+
     static propTypes = {
         movieItem: propTypes.object,
     };
@@ -10,15 +20,24 @@ export default class MovieBox extends React.Component {
         movieItem: undefined
     };
 
-    componentWillMount() {
+    componentDidMount() {
 
+    }
+
+    goDetail(){
+        const url = '/detail/' + this.props.movieItem.imdbID;
+        this.setState({redirect: true,
+            url: url });
     }
 
     render() {
         const {movieItem} = this.props;
+        if (this.state.redirect) {
+            return <Redirect push to={this.state.url} />;
+        }
         return (
             <div className='Movie-box'>
-                <div className='m-img'>
+                <div onClick={this.goDetail} className='m-img'>
                     <img src={movieItem.Poster} alt="img not found"/>
                 </div>
                 <div className='m-title'>
