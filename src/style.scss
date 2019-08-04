@@ -1,9 +1,10 @@
-body{
+body {
   overflow-y: hidden !important;
   overflow-x: hidden !important;
   background-color: #83142c;
 
 }
+
 .Home-page {
   height: -webkit-fill-available;
   text-align: center;
@@ -62,7 +63,6 @@ body{
   box-shadow: inset 0 0 0 1px gray;
 }
 
-
 .Movie-list-container {
   border: 1px solid black;
   display: grid;
@@ -84,6 +84,7 @@ body{
   display: inline-block;
   height: 20rem;
   background-color: #9b142d;
+  cursor: pointer;
 
   .m-title {
     bottom: 0;
@@ -95,7 +96,7 @@ body{
 
   img {
     height: 250px;
-    border:1px solid #f9f5ad;
+    border: 1px solid #f9f5ad;
 
   }
 }
@@ -123,16 +124,17 @@ body{
       margin: 0 25% 0 25%;
       width: 50%;
       min-width: 400px;
-      height: 400px;
+      height: auto;
 
     }
+
     .m-title {
       position: absolute;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: xx-large;
       bottom: -28%;
-
+      display: contents;
     }
   }
 

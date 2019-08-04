@@ -87,7 +87,7 @@ class HomePage extends Component {
             movieListForFiltering: movies,
             isLoading: false,
             hasMore: movies.length < total,
-            maxPage: total/10 | 0
+            maxPage: total/10 | 0,
         })
 
     }

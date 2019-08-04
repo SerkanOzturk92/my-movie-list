@@ -1,11 +1,12 @@
 import React from 'react';
 import * as propTypes from 'prop-types';
 import {Redirect} from "react-router";
+import {Link} from "react-router-dom";
 
 export default class MovieBox extends React.Component {
     state = {
         redirect: false,
-        url:''
+        url:'',
     };
     constructor(props){
         super(props);
@@ -36,14 +37,14 @@ export default class MovieBox extends React.Component {
             return <Redirect push to={this.state.url} />;
         }
         return (
-            <div className='Movie-box'>
+            <Link key={movieItem.imdbID} to={`/detail/${movieItem.imdbID}`} className='Movie-box'>
                 <div onClick={this.goDetail} className='m-img'>
                     <img src={movieItem.Poster} alt="img not found"/>
                 </div>
                 <div className='m-title'>
                     <p> {movieItem.Title}</p>
                 </div>
-            </div>
+            </Link>
         );
     }
 }

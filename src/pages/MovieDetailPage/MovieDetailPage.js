@@ -3,11 +3,17 @@ import '../../style.scss';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {getMovieDetail} from "./redux/actions";
+import {Link} from "react-router-dom";
 
 class MovieDetailPage extends Component {
     state = {
         movieDetail: undefined
     };
+
+    constructor(props) {
+        super(props);
+        this.goBack = this.goBack.bind(this);
+    }
 
     componentDidMount() {
         const {id} = this.props.match.params;
@@ -39,15 +45,20 @@ class MovieDetailPage extends Component {
 
     }
 
+    goBack() {
+        debugger;
+        this.props.history.goBack();
+    }
+
+
     render() {
         const {movieDetail} = this.state;
         return (
-
             <div className='Movie-detail-page'>
                 {movieDetail &&
                 <div className='Movie-poster'>
                     <div className='m-img'>
-                        <img src={movieDetail.Poster} alt="yok"/>
+                        <img src={movieDetail.Poster} alt="Not found!"/>
                     </div>
                     <div className='m-title'>
                         {movieDetail.Title}
@@ -56,12 +67,11 @@ class MovieDetailPage extends Component {
                 }
                 {movieDetail &&
                 <div className='Movie-description'>
-                    <div>{movieDetail.Plot}</div>
-                    <div>Awards: {movieDetail.Awards}</div>
-                    <div>Year: {movieDetail.Year}</div>
-                    <div>Director: {movieDetail.Director}</div>
-                    <div>IMDB Rating: {movieDetail.imdbRating}</div>
-
+                    <div><span>Plot: </span>{movieDetail.Plot}</div>
+                    <div><span>Awards: </span>{movieDetail.Awards}</div>
+                    <div><span>Year: </span>Year: {movieDetail.Year}</div>
+                    <div><span>Director: </span>Director: {movieDetail.Director}</div>
+                    <div><span>IMDB Rating: </span>IMDB Rating: {movieDetail.imdbRating}</div>
                 </div>
                 }
             </div>
