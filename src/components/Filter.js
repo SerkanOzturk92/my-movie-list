@@ -1,5 +1,5 @@
 import React from 'react';
-
+let timeout =null;
 export default class Filter extends React.Component {
     constructor(props){
         super(props);
@@ -10,9 +10,16 @@ export default class Filter extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
-        this.props.filterMovies(event.target.value);
+        clearTimeout(timeout);
+        const eventVal = event.target.value;
+        this.setState({value: eventVal});
+        timeout = setTimeout(()=> {
+            this.props.filterMovies(eventVal);
+        }, 300);
+        console.log(eventVal);
     }
+
+
     onClick() {
         this.props.filterMovies(this.state.value);
     }
