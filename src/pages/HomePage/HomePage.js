@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Filter from "../../components/Filter";
 import MovieListContainer from "../../components/MovieListContainer";
-import { bindActionCreators } from 'redux';
+import {bindActionCreators} from 'redux';
 import {connect} from "react-redux";
 import {fetchSearchMovies} from "./redux/action";
 
 class HomePage extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.searchMovies = this.searchMovies.bind(this);
@@ -15,26 +15,26 @@ class HomePage extends Component {
     }
 
     state = {
-        error:false,
+        error: false,
         hasMore: true,
         isLoading: false,
         movies: [],
-        page:1
+        page: 1,
+        maxPage: 10
     };
 
     componentDidMount() {
         this.searchMovies(this.state.keyword);
     }
 
-    scrolled(o){
-        const { error, isLoading, hasMore } = this.state;
+    scrolled(o) {
+        const {error, isLoading, hasMore} = this.state;
         if (error || isLoading || !hasMore) return;
-        if(o.currentTarget.offsetHeight + o.currentTarget.scrollTop === o.currentTarget.scrollHeight)
-        {
+        if (o.currentTarget.offsetHeight + o.currentTarget.scrollTop === o.currentTarget.scrollHeight) {
             this.setState({
                 isLoading: true
             });
-            if(!!this.state.keyword) {
+            if (!!this.state.keyword) {
                 this.searchMovies(this.state.keyword);
             }
         }
@@ -43,11 +43,11 @@ class HomePage extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {movies, moviesError} = this.props;
 
-        if(movies !== prevProps.movies) {
+        if (movies !== prevProps.movies) {
             this.handleMoviesData(movies);
         }
 
-        if(moviesError !== prevProps.moviesError) {
+        if (moviesError !== prevProps.moviesError) {
             this.handleMoviesError(moviesError);
         }
     }
@@ -55,16 +55,14 @@ class HomePage extends Component {
     searchMovies(keyword) {
         //TODO: kullanıcı 3 harften sonra 300ms beklerse arama yapılacak.
         // eğer 300ms geçmeden yeni harf tıklanırsa arama beklemeli.
-
-        if(this.state.keyword !== keyword) {
+        if (this.state.keyword !== keyword) {
             this.setState({
-                movies: [],
-                page:1
+                    movies: [],
+                    page: 1
                 }
             )
         }
-
-        if(!!keyword && keyword.length > 2)
+        if(!!keyword && keyword.length > 2 && this.state.maxPage >= this.state.page)
         {
             this.props.fetchSearchMovies(keyword,this.state.page);
             this.setState({
@@ -76,48 +74,51 @@ class HomePage extends Component {
     }
 
     handleMoviesData(moviesResp) {
-        if(moviesResp.Response === 'False') return;
+        if (moviesResp.Response === 'False') return;
 
         const total = +moviesResp.totalResults;
+
         const movies = [
             ...this.state.movies,
             ...moviesResp.Search,
         ];
         this.setState({
             movies: movies,
+            movieListForFiltering: movies,
             isLoading: false,
-            hasMore: movies.length < total
+            hasMore: movies.length < total,
+            maxPage: total/10 | 0
         })
 
     }
+
     handleMoviesError(error) {
         this.setState({
             error: error
         });
     }
 
-    typeFilter(type){
+    typeFilter(type) {
         console.log(type);
 
-        if(this.state.movies.length > 0) {
-            const newList = this.filterByTypeMovies(this.state.movies,type);
-            debugger;
+        if (this.state.movies.length > 0) {
+            const newList = this.filterByTypeMovies(this.state.movieListForFiltering, type);
             this.setState({
                 movies: newList
             })
         }
     }
 
-    filterByTypeMovies(movies,type){
+    filterByTypeMovies(movies, type) {
         return movies.filter(item => {
             return item.Type === type;
         })
     }
 
-    render(){
+    render() {
         return (
             <div onScroll={this.scrolled.bind(this)} className='Home-page'>
-                <Filter filterMoviesByType={this.typeFilter} filterMovies = {this.searchMovies} />
+                <Filter filterMoviesByType={this.typeFilter} filterMovies={this.searchMovies}/>
                 <MovieListContainer movies={this.state.movies}/>
             </div>
         );
