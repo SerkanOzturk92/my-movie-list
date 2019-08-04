@@ -1,12 +1,21 @@
 import * as types from './types';
+import {axiosGlobal} from "../../../network";
+import {API_KEY} from "../../../utils/constant";
 
-export const getMovieDetail = (imdbId) => {
+export const getMovieDetail = (imdbID) => {
     return dispatch => {
-        return getMovieDetail(imdbId)
+        const url = ``;
+        return axiosGlobal
+            .get(url, {
+                params: {
+                    apikey: API_KEY,
+                    i: imdbID,
+                }
+            })
             .then(({data}) => {
                 dispatch({
                     type: types.GET_MOVIES_DETAIL_SUCCESS,
-                    payload: data.data
+                    payload: data
                 })
             })
             .catch(error => {

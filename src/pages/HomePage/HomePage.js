@@ -11,6 +11,7 @@ class HomePage extends Component {
         super(props);
 
         this.searchMovies = this.searchMovies.bind(this);
+        this.typeFilter = this.typeFilter.bind(this);
     }
 
     state = {
@@ -18,10 +19,25 @@ class HomePage extends Component {
         hasMore: true,
         isLoading: false,
         movies: [],
+        page:1
     };
 
     componentDidMount() {
+        this.searchMovies(this.state.keyword);
+    }
 
+    scrolled(o){
+        const { error, isLoading, hasMore } = this.state;
+        if (error || isLoading || !hasMore) return;
+        if(o.currentTarget.offsetHeight + o.currentTarget.scrollTop === o.currentTarget.scrollHeight)
+        {
+            this.setState({
+                isLoading: true
+            });
+            if(!!this.state.keyword) {
+                this.searchMovies(this.state.keyword);
+            }
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -39,14 +55,28 @@ class HomePage extends Component {
     searchMovies(keyword) {
         //TODO: kullanıcı 3 harften sonra 300ms beklerse arama yapılacak.
         // eğer 300ms geçmeden yeni harf tıklanırsa arama beklemeli.
-        if(keyword.length > 2)
-        {
-            this.props.fetchSearchMovies(keyword);
+
+        if(this.state.keyword !== keyword) {
+            this.setState({
+                movies: [],
+                page:1
+                }
+            )
         }
+
+        if(!!keyword && keyword.length > 2)
+        {
+            this.props.fetchSearchMovies(keyword,this.state.page);
+            this.setState({
+                keyword: keyword,
+                page: this.state.page + 1
+            });
+        }
+
     }
 
     handleMoviesData(moviesResp) {
-        if(!moviesResp) return;
+        if(moviesResp.Response === 'False') return;
 
         const total = +moviesResp.totalResults;
         const movies = [
@@ -66,10 +96,28 @@ class HomePage extends Component {
         });
     }
 
+    typeFilter(type){
+        console.log(type);
+
+        if(this.state.movies.length > 0) {
+            const newList = this.filterByTypeMovies(this.state.movies,type);
+            debugger;
+            this.setState({
+                movies: newList
+            })
+        }
+    }
+
+    filterByTypeMovies(movies,type){
+        return movies.filter(item => {
+            return item.Type === type;
+        })
+    }
+
     render(){
         return (
-            <div className='Home-page'>
-                <Filter filterMovies = {this.searchMovies} />
+            <div onScroll={this.scrolled.bind(this)} className='Home-page'>
+                <Filter filterMoviesByType={this.typeFilter} filterMovies = {this.searchMovies} />
                 <MovieListContainer movies={this.state.movies}/>
             </div>
         );

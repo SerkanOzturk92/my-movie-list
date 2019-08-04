@@ -1,6 +1,11 @@
+body{
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
 .Home-page {
   height: -webkit-fill-available;
   text-align: center;
+  overflow: auto;
 }
 
 .Header {

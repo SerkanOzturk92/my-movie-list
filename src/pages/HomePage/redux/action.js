@@ -2,7 +2,7 @@ import * as types from './types';
 import { axiosGlobal } from '../../../network';
 import {API_KEY} from "../../../utils/constant";
 
-export const fetchSearchMovies = (keyword) => {
+export const fetchSearchMovies = (keyword,page) => {
     return dispatch => {
         const url = ``;
 
@@ -12,7 +12,7 @@ export const fetchSearchMovies = (keyword) => {
                     apikey: API_KEY,
                     s: keyword,
                     plot: 'full',
-                    page: 1
+                    page: page ? page : 1
                 }
             })
             .then(({data}) => {
